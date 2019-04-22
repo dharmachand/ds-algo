@@ -8,7 +8,7 @@ public class Rotation {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void rotateRight(int[] elements, int rotations) {
+    public static void rotateRightOneByOne(int[] elements, int rotations) {
         for (int j = 0; j < rotations; j++) {
             rotateRightByOne(elements);
         }
@@ -22,7 +22,7 @@ public class Rotation {
         elements[0] = temp;
     }
 
-    public static void rotateLeft(int[] elements, int rotations) {
+    public static void rotateLeftOneByOne(int[] elements, int rotations) {
         for (int j = 0; j < rotations; j++) {
             rotateLeftByOne(elements);
         }
@@ -129,38 +129,38 @@ public class Rotation {
             elements[i] = Integer.parseInt(nk[i]);
         }
 
-        rotateRight(elements, rotations);
+        rotateRightOneByOne(elements, rotations); //rotate right one by one
         System.out.println("Right Rotated elements: ");
         printElements(elements);
 
         //reset elements
-        rotateLeft(elements, rotations);
+        rotateLeftOneByOne(elements, rotations);
 
-        rotateLeft(elements, rotations); //rotate one by one
+        rotateLeftOneByOne(elements, rotations); //rotate left one by one
         System.out.println("");
         System.out.println("Left Rotated elements one-by-one: ");
         printElements(elements);
 
         //reset elements
-        rotateRight(elements, rotations);
+        rotateRightOneByOne(elements, rotations);
 
-        rotateLeftByJuggling(elements, rotations); //rotate by juggling
+        rotateLeftByJuggling(elements, rotations); //rotate left by juggling
         System.out.println("");
         System.out.println("Left Rotated elements by juggling: ");
         printElements(elements);
 
         //reset elements
-        rotateRight(elements, rotations);
+        rotateRightOneByOne(elements, rotations);
 
-        rotateLeftByReversal(elements, rotations); //rotate by reversal
+        rotateLeftByReversal(elements, rotations); //rotate left by reversal
         System.out.println("");
         System.out.println("Left Rotated elements by reversal: ");
         printElements(elements);
 
         //reset elements
-        rotateRight(elements, rotations);
+        rotateRightOneByOne(elements, rotations);
 
-        rotateLeftByBlockSwap(elements, rotations); //rotate by block swap
+        rotateLeftByBlockSwap(elements, rotations); //rotate left by block swap
         System.out.println("");
         System.out.println("Left Rotated elements by block swap: ");
         printElements(elements);
