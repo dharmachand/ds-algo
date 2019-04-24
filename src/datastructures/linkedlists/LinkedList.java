@@ -67,18 +67,18 @@ public class LinkedList {
             throw new IllegalStateException("next node is null");
         }
 
-        Node traverseNode = head;
-        while (traverseNode.next != null && traverseNode.next.data != nextNode.data) {
-            traverseNode = traverseNode.next;
+        Node currNode = head;
+        while (currNode.next != null && currNode.next.data != nextNode.data) {
+            currNode = currNode.next;
         }
 
-        if (traverseNode.next == null) {
+        if (currNode.next == null) {
             throw new IllegalStateException("before element is not found");
         }
 
         Node newNode = new Node(value);
         newNode.next = nextNode;
-        traverseNode.next = newNode;
+        currNode.next = newNode;
     }
 
     //Removes node
@@ -95,17 +95,17 @@ public class LinkedList {
 
         // Search for the key to be deleted, keep track of the
         // previous node as we need to change temp.next
-        Node traverseNode = head;
+        Node currNode = head;
         Node prevNode = null;
-        while (traverseNode != null && traverseNode.data != value) {
-            prevNode = traverseNode;
-            traverseNode = traverseNode.next;
+        while (currNode != null && currNode.data != value) {
+            prevNode = currNode;
+            currNode = currNode.next;
         }
 
         // If key was not present in linked list
-        if (traverseNode == null) { return; }
+        if (currNode == null) { return; }
 
-        prevNode.next = traverseNode.next;
+        prevNode.next = currNode.next;
 
     }
 
@@ -123,27 +123,40 @@ public class LinkedList {
 
         // Traverse to position of the node to be deleted, keep track of the
         // previous node as we need to change temp.next
-        Node traverseNode = head;
+        Node currNode = head;
         Node prevNode = null;
         int i = 0;
-        while (traverseNode != null && i != position) {
-            prevNode = traverseNode;
-            traverseNode = traverseNode.next;
+        while (currNode != null && i != position) {
+            prevNode = currNode;
+            currNode = currNode.next;
             i++;
         }
 
         // If postion is out of bounds
-        if (traverseNode == null) { return; }
+        if (currNode == null) { return; }
 
-        prevNode.next = traverseNode.next;
+        prevNode.next = currNode.next;
 
     }
 
+    public static void reverse(LinkedList linkedList) {
+         Node currNode = linkedList.head;
+         Node prevNode = null;
+         Node nextNode;
+         while (currNode != null) {
+             nextNode = currNode.next;
+             currNode.next = prevNode;
+             prevNode = currNode;
+             currNode = nextNode;
+         }
+         linkedList.head = prevNode;
+    }
+
     public static void printElements(LinkedList linkedList) {
-         Node traverseNode = linkedList.head;
-         while (traverseNode != null) {
-             System.out.print(traverseNode.data + " ");
-             traverseNode = traverseNode.next;
+         Node currNode = linkedList.head;
+         while (currNode != null) {
+             System.out.print(currNode.data + " ");
+             currNode = currNode.next;
          }
         System.out.println("");
     }
@@ -187,6 +200,9 @@ public class LinkedList {
         System.out.println("Elements after insertion before 3rd element: ");
         printElements(elementList);
 
+        reverse(elementList);
+        System.out.println("Elements after reversal: ");
+        printElements(elementList);
 
 
     }
