@@ -6,7 +6,7 @@ public class LinkedList {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    Node head;
+    private Node head;
 
      static class Node { //defined static to reference in main()
         int data;
@@ -15,6 +15,10 @@ public class LinkedList {
             data = value;
             next = null;
         }
+    }
+
+    public Node peek() {
+         return this.head;
     }
 
     //Inserts new node in the front of the list
@@ -203,6 +207,8 @@ public class LinkedList {
         reverse(elementList);
         System.out.println("Elements after reversal: ");
         printElements(elementList);
+
+        System.out.println("Head of the elements linked list: " + elementList.peek().data);
 
 
     }
