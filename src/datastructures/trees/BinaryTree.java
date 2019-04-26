@@ -3,6 +3,7 @@ package datastructures.trees;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -136,6 +137,54 @@ public class BinaryTree {
         }
     }
 
+    //find node using Breadth First Search
+    public Node findNodeWithBFS(Node root, int val) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty() && root != null) {
+            root = q.peek();
+            if (root.key == val) return root;
+            q.remove();
+            if (root.left != null) {
+                q.add(root.left);
+            }
+            if (root.right != null) {
+                q.add(root.right);
+            }
+        }
+        return null;
+    }
+
+    public Node findNodeWithBFS(int val) {
+        return findNodeWithBFS(this.root, val);
+    }
+
+    //find node using Depth First Search
+    public Node findNodeWithDFS(Node root, int val) {
+        Stack<Node> stack = new Stack<>();
+
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                Node node = stack.pop();
+                if (node.key == val) return node;
+                root = node.right;
+            }
+        }
+        return null;
+    }
+
+    public Node findNodeWithDFS(int val) {
+        return findNodeWithDFS(this.root, val);
+    }
+
+    private static int sum(Node root) {
+        if (root == null) return 0;
+        return root.key + sum(root.left) + sum(root.right);
+    }
+
 
     public static final Scanner scanner = new Scanner(System.in);
 
@@ -165,6 +214,17 @@ public class BinaryTree {
         System.out.println("LevelOrder traversal of elements: ");
         binaryTree.levelorder();
         System.out.println("");
+
+        System.out.println("Sum of elements: " + sum(binaryTree.root));
+
+        System.out.println("Enter element to search: ");
+        int searchElement = Integer.parseInt(scanner.nextLine());
+
+        Node nodeBfs = binaryTree.findNodeWithBFS(searchElement);
+        System.out.println("Found with BFS: " + (nodeBfs != null));
+
+        Node nodeDfs = binaryTree.findNodeWithDFS(searchElement);
+        System.out.println("Found with DFS: " + (nodeDfs != null));
 
     }
 

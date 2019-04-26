@@ -103,6 +103,7 @@ public class BinarySearchTree {
         levelorder(this.root);
     }
 
+    //level-order traversal or Breadth First traversal starting from given node
     public Node insert(Node currNode, int key) {
 
         if (currNode == null) {
