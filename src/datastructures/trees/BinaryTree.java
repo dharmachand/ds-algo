@@ -180,11 +180,35 @@ public class BinaryTree {
         return findNodeWithDFS(this.root, val);
     }
 
-    private static int sum(Node root) {
+    public static int sum(Node root) {
         if (root == null) return 0;
         return root.key + sum(root.left) + sum(root.right);
     }
 
+    public static int size(Node root) {
+        if (root == null) return 0;
+        return size(root.left) + size(root.right) + 1;
+    }
+
+    public int size() {
+        int size = 0;
+        if (this.root == null) return size;
+        Queue<Node> q = new LinkedList<>();
+        q.add(this.root);
+        Node temp;
+        while (!q.isEmpty()) {
+            temp = q.peek();
+            q.remove();
+            size++;
+            if (temp.left != null) {
+                q.add(temp.left);
+            }
+            if (temp.right != null) {
+                q.add(temp.right);
+            }
+        }
+        return size;
+    }
 
     public static final Scanner scanner = new Scanner(System.in);
 
@@ -216,6 +240,10 @@ public class BinaryTree {
         System.out.println("");
 
         System.out.println("Sum of elements: " + sum(binaryTree.root));
+
+        System.out.println("Size of elements binary tree: " + binaryTree.size());
+
+        System.out.println("Size of elements binary tree (recursive): " + size(binaryTree.root));
 
         System.out.println("Enter element to search: ");
         int searchElement = Integer.parseInt(scanner.nextLine());
