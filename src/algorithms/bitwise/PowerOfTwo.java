@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.bitwise;
 
 import java.util.Scanner;
 

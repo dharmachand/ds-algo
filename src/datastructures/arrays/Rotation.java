@@ -1,6 +1,6 @@
 package datastructures.arrays;
 
-import algorithms.Gcd;
+import algorithms.misc.Gcd;
 
 import java.util.Scanner;
 

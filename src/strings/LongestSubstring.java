@@ -6,6 +6,8 @@ public class LongestSubstring {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    //sliding window approach
+    //here i is one end of the window and j is other end
     public static int lengthOfLongestSubstring(String s) {
         int n = s.length();
         int i = 0, j = 0, maxLen = 0;
