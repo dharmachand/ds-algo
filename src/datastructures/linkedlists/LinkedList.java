@@ -8,12 +8,14 @@ public class LinkedList {
 
     private Node head;
 
+    private int size;
+
      static class Node { //defined static to reference in main()
         int data;
         Node next;
         Node(int value) {
-            data = value;
-            next = null;
+            this.data = value;
+            this.next = null;
         }
     }
 
@@ -24,16 +26,18 @@ public class LinkedList {
     //Inserts new node in the front of the list
     public void push(int value) {
          Node newNode = new Node(value);
-         newNode.next = head;
-         head = newNode;
+         newNode.next = this.head;
+         this.head = newNode;
+         this.size++;
     }
 
     //Deletes node at front of the list, move the head
     public void pop() {
-         if (head == null) {
+         if (this.head == null) {
              throw new IllegalStateException("Empty LinkedList, pop can't be done");
          }
-         head = head.next;
+        this.head = this.head.next;
+        this.size--;
     }
 
     //Inserts new node to the last of the list
@@ -41,17 +45,18 @@ public class LinkedList {
          Node newNode = new Node(value);
          newNode.next = null; //new node will be last node
 
-        if (head == null) { // Head will be null if linkedlist is empty
-            head = newNode;
+        if (this.head == null) { // Head will be null if linkedlist is empty
+            this.head = newNode;
             return; // set new node as head and return
         }
 
-         Node last = head;
+         Node last = this.head;
          while (last.next != null) {
              last = last.next;
          }
 
          last.next = newNode;
+         this.size++;
     }
 
     //Inserts new node after a given node
@@ -63,6 +68,7 @@ public class LinkedList {
         Node newNode = new Node(value);
         newNode.next = previousNode.next;
         previousNode.next = newNode;
+        this.size++;
     }
 
     //Inserts new node before a given node
@@ -83,23 +89,24 @@ public class LinkedList {
         Node newNode = new Node(value);
         newNode.next = nextNode;
         currNode.next = newNode;
+        this.size++;
     }
 
     //Removes node
     public void remove(int value) {
-        if (head == null) {
+        if (this.head == null) {
             throw new IllegalStateException("Empty LinkedList");
         }
 
         // If head node itself holds the key to be deleted
-        if (head.data == value) {
-            head = head.next;
+        if (this.head.data == value) {
+            this.head = head.next;
             return;
         }
 
         // Search for the key to be deleted, keep track of the
         // previous node as we need to change temp.next
-        Node currNode = head;
+        Node currNode = this.head;
         Node prevNode = null;
         while (currNode != null && currNode.data != value) {
             prevNode = currNode;
@@ -110,6 +117,7 @@ public class LinkedList {
         if (currNode == null) { return; }
 
         prevNode.next = currNode.next;
+        this.size--;
 
     }
 
@@ -140,11 +148,11 @@ public class LinkedList {
         if (currNode == null) { return; }
 
         prevNode.next = currNode.next;
-
+        this.size--;
     }
 
-    public static void reverse(LinkedList linkedList) {
-         Node currNode = linkedList.head;
+    public void reverse() {
+         Node currNode = this.head;
          Node prevNode = null;
          Node nextNode;
          while (currNode != null) {
@@ -153,7 +161,40 @@ public class LinkedList {
              prevNode = currNode;
              currNode = nextNode;
          }
-         linkedList.head = prevNode;
+         this.head = prevNode;
+    }
+
+    public Node get(int pos) {
+         int i = 0;
+         Node currNode = this.head;
+         while (currNode != null && i < pos) {
+             currNode = currNode.next;
+             i++;
+         }
+         if (i < pos) throw new IndexOutOfBoundsException("Invalid position");
+        return currNode;
+    }
+
+    //n - pos; where n is size of list
+    public Node getFromLast(int pos) {
+        Node currNodeRef = this.head;
+        int i = 0;
+        while (currNodeRef != null && i < pos) {
+            currNodeRef = currNodeRef.next;
+            i++;
+        }
+        if (i < pos) throw new IndexOutOfBoundsException("Invalid position");
+
+        Node currNodeMain = this.head;
+        while (currNodeRef != null) {
+            currNodeRef = currNodeRef.next;
+            currNodeMain = currNodeMain.next;
+        }
+        return currNodeMain;
+    }
+
+    public int getSize() {
+         return this.size;
     }
 
     public static void printElements(LinkedList linkedList) {
@@ -204,12 +245,17 @@ public class LinkedList {
         System.out.println("Elements after insertion before 3rd element: ");
         printElements(elementList);
 
-        reverse(elementList);
+        elementList.reverse();
         System.out.println("Elements after reversal: ");
         printElements(elementList);
 
         System.out.println("Head of the elements linked list: " + elementList.peek().data);
 
+
+        System.out.println("Enter element position: ");
+        int pos = Integer.parseInt(scanner.nextLine());
+        System.out.println("Element at pos " + pos + " is: " + elementList.get(pos).data);
+        System.out.println("Element at list size - pos " + (elementList.getSize() - pos) + " is: " + elementList.getFromLast(pos).data);
 
     }
 
