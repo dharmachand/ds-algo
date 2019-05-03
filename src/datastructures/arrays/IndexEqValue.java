@@ -8,7 +8,8 @@ public class IndexEqValue {
     private static final Scanner scanner = new Scanner(System.in);
 
     //swap elements to right place if its not there
-    private static int[] rearrangeElementsToMatchIndexAndValue2(int[] elements) {
+    //Time Complexity: O(n)
+    private static void rearrangeElementsToMatchIndexAndValue2(int[] elements) {
         for (int i = 0; i < elements.length;) {
             if (elements[i] != -1 && elements[i] != i) {
                 swap(elements, i, elements[i]);
@@ -16,7 +17,6 @@ public class IndexEqValue {
                 i++;
             }
         }
-        return elements;
     }
 
     //swap single element
@@ -28,7 +28,7 @@ public class IndexEqValue {
 
     //re-arrange elements to match index and value
     //if no element is found set value to -1
-    private static int[] rearrangeElementsToMatchIndexAndValue1(int[] elements) {
+    private static void rearrangeElementsToMatchIndexAndValue1(int[] elements) {
         int x = 0, y = 0;
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] != -1 && elements[i] != i) {
@@ -53,22 +53,19 @@ public class IndexEqValue {
                 }
             }
         }
-        return elements;
     }
 
     //using hashset place the elements to right place
-    private static int[] rearrangeElementsToMatchIndexAndValue(int[] elements) {
+    private static void rearrangeElementsToMatchIndexAndValue(int[] elements) {
         HashSet<Integer> numberSet = new HashSet<>();
         for (int i = 0; i < elements.length; i++) {
-            if (elements[i] != -1 && elements[i] != i) numberSet.add(i);
+            if (elements[i] != -1) numberSet.add(elements[i]);
         }
+
         for (int i = 0; i < elements.length; i++) {
-            if (elements[i] != -1 && elements[i] != i) {
-                if (numberSet.contains(i)) elements[i] = i;
-                else elements[i] = -1;
-            }
+            if (numberSet.contains(i)) elements[i] = i;
+            else elements[i] = -1;
         }
-        return elements;
     }
 
     public static void printElements(int[] elements) {
@@ -92,7 +89,8 @@ public class IndexEqValue {
         }
 
         System.out.println("swap elements iteratively and place it at right index: ");
-        printElements(rearrangeElementsToMatchIndexAndValue2(elements));
+        rearrangeElementsToMatchIndexAndValue2(elements);
+        printElements(elements);
 
         //reset elements
         for (int i = 0; i < nk.length; i++) {
@@ -100,7 +98,8 @@ public class IndexEqValue {
         }
 
         System.out.println("Iteratively find value and place it at right index: ");
-        printElements(rearrangeElementsToMatchIndexAndValue1(elements));
+        rearrangeElementsToMatchIndexAndValue1(elements);
+        printElements(elements);
 
         //reset elements
         for (int i = 0; i < nk.length; i++) {
@@ -108,7 +107,8 @@ public class IndexEqValue {
         }
 
         System.out.println("Place values at right index using hashset : ");
-        printElements(rearrangeElementsToMatchIndexAndValue(elements));
+        rearrangeElementsToMatchIndexAndValue(elements);
+        printElements(elements);
 
     }
 

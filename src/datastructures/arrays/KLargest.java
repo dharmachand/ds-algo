@@ -1,27 +1,30 @@
 package datastructures.arrays;
 
-import datastructures.heaps.MinIntHeap;
+import datastructures.heaps.MaxIntHeap;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
 
-public class KSmallest {
+public class KLargest {
 
     private static final Scanner scanner = new Scanner(System.in);
 
     //Time complexity: O(n pow 2)
-    public static Set<Integer> kSmallest(int k, int[] elements) {
-        Set<Integer> smallSet = new HashSet<>();
-        int small;
+    public static Set<Integer> kLargest(int k, int[] elements) {
+        Set<Integer> largeSet = new HashSet<>();
+        int large;
         for (int j = 0; j < k; j++) {
-            small = elements[0];
+            large = elements[0];
             for (int i = 0; i < elements.length; i++) {
-                if (!smallSet.contains(elements[i]) && small > elements[i]) {
-                    small = elements[i];
+                if (!largeSet.contains(elements[i]) && large < elements[i]) {
+                    large = elements[i];
                 }
             }
-            smallSet.add(small);
+            largeSet.add(large);
         }
-        return smallSet;
+        return largeSet;
     }
 
 
@@ -38,7 +41,7 @@ public class KSmallest {
         System.out.println("Enter elements: ");
         String[] input = scanner.nextLine().split(" ");
 
-        System.out.println("No. of smallest elements: ");
+        System.out.println("No. of Largest elements: ");
         int k = Integer.parseInt(scanner.nextLine());
 
         int[] elements = new int[input.length];
@@ -48,23 +51,23 @@ public class KSmallest {
         }
 
         //Time complexity: O(n pow 2)
-        System.out.println("K Smallest elements using 2 loops: ");
-        Set<Integer> kSmallElements = kSmallest(k, elements);
+        System.out.println("K Largest elements using 2 loops: ");
+        Set<Integer> kSmallElements = kLargest(k, elements);
         printElements(kSmallElements);
 
         //Time complexity: O(n + kLogn)
         //Time complexity for building heap is O(n) and
-        //Time complexity for each extraction (min element) is O(logn) as it needs to run heapifyDown
+        //Time complexity for each extraction (max element) is O(logn) as it needs to run heapifyDown
         //Time complexity for k extractions is kLogn
         System.out.println("");
-        System.out.println("K Smallest elements using min heap: ");
-        MinIntHeap minHeap = new MinIntHeap(input.length);
+        System.out.println("K Largest elements using max heap: ");
+        MaxIntHeap minHeap = new MaxIntHeap(input.length);
         for (int i = 0; i < input.length; i++) {
             minHeap.add(Integer.parseInt(input[i]));
         }
 
         for (int i = 0; i < k; i++) {
-            System.out.print(minHeap.extractMin() + " ");
+            System.out.print(minHeap.extractMax() + " ");
         }
 
         scanner.close();

@@ -7,22 +7,40 @@ public class BubbleSort {
     private static final Scanner scanner = new Scanner(System.in);
 
     // O(n pow 2)
-    public static void bubbleSort(int[] elements) {
-        int temp;
+    public static void bubbleSortAsc(int[] elements) {
         boolean isSorted;
         for (int k = 0; k < elements.length; k++) {
             isSorted = true;
             for (int i = 0; i < elements.length - k - 1; i++) {
                 if (elements[i] > elements[i + 1]) {
-                    temp = elements[i];
-                    elements[i] = elements[i + 1];
-                    elements[i + 1] = temp;
-
+                    swap(elements, i , i + 1);
                     isSorted = false;
                 }
             }
             if (isSorted) { break; }
         }
+    }
+
+    // O(n pow 2)
+    public static void bubbleSortDsc(int[] elements) {
+        boolean isSorted;
+        for (int k = 0; k < elements.length; k++) {
+            isSorted = true;
+            for (int i = 0; i < elements.length - k - 1; i++) {
+                if (elements[i] < elements[i + 1]) {
+                    swap(elements, i , i + 1);
+                    isSorted = false;
+                }
+            }
+            if (isSorted) { break; }
+        }
+    }
+
+    //swap single element
+    public static void swap(int[] elements, int aIdx, int bIdx) {
+        int temp = elements[aIdx];
+        elements[aIdx] = elements[bIdx];
+        elements[bIdx] = temp;
     }
 
     public static void printElements(int[] elements) {
@@ -42,9 +60,19 @@ public class BubbleSort {
             elements[i] = Integer.parseInt(nk[i]);
         }
 
-        bubbleSort(elements);
+        bubbleSortAsc(elements);
+        System.out.println("Sorted ascending: ");
+        printElements(elements);
 
-        System.out.println("Sorted: ");
+        //reset elements
+        for (int i = 0; i < nk.length; i++) {
+            elements[i] = Integer.parseInt(nk[i]);
+        }
+
+        System.out.println("");
+
+        bubbleSortDsc(elements);
+        System.out.println("Sorted descending: ");
         printElements(elements);
 
         scanner.close();

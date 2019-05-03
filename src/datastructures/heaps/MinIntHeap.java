@@ -62,33 +62,38 @@ public class MinIntHeap {
 
     public void ensureExtraCapacity() {
         if (this.size == this.capacity) {
-            this.elements = Arrays.copyOf(elements, 2 * capacity);
             this.capacity *= 2;
+            this.elements = Arrays.copyOf(elements, this.capacity);
         }
     }
 
-    public int peek() {
-        if (size == 0) throw new IllegalStateException("empty heap");
-        return elements[0]; //return root which is min element
+    //Time Complexity: O(1)
+    public int peek() { //peek will return root which is min element
+        if (this.size == 0) throw new IllegalStateException("empty heap");
+        return this.elements[0]; //root is min element
     }
 
+    //Time Complexity: O(Logn)
     public int poll() { // poll will extract min
-        if (size == 0) throw new IllegalStateException("empty heap");
-        int element = this.elements[0];
+        if (this.size == 0) throw new IllegalStateException("empty heap");
+        int minElement = this.elements[0];
         this.elements[0] = this.elements[this.size - 1];
-        size--;
+        this.size--;
         heapifyDown();
-        return element;
+        return minElement;
     }
 
+    //Time Complexity: O(Logn)
     public int extractMin() {
         return poll();
     }
 
+    //Time Complexity: O(Logn)
     private void heapifyDown() {
         int index = 0;
+        int smallerChildIndex;
         while (hasLeftChild(index)) {
-            int smallerChildIndex = getLeftChildIndex(index);
+            smallerChildIndex = getLeftChildIndex(index);
             if (hasRightChild(index) && rightChild(index) < leftChild(index)) {
                 smallerChildIndex = getRightChildIndex(index);
             }
@@ -101,13 +106,15 @@ public class MinIntHeap {
         }
     }
 
+    //Time Complexity: O(Logn)
     public void add(int value) {
         ensureExtraCapacity();
-        this.elements[size] = value;
+        this.elements[this.size] = value;
         this.size++;
         heapifyUp();
     }
 
+    //Time Complexity: O(Logn)
     private void heapifyUp() {
         int index = size - 1;
         while (hasParent(index) && parent(index) > this.elements[index]) {
@@ -131,10 +138,12 @@ public class MinIntHeap {
 
         MinIntHeap minHeap = new MinIntHeap(nk.length);
 
+        //Time Complexity for building heap: O(n)
         for (int i = 0; i < nk.length; i++) {
             minHeap.add(Integer.parseInt(nk[i]));
         }
 
+        System.out.println("Root of min heap (smallest element): " + minHeap.peek());
         System.out.println("Min Heap elements: ");
         minHeap.printElements();
 
