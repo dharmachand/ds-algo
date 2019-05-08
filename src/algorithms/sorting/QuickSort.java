@@ -7,7 +7,10 @@ public class QuickSort {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    // Best: O(nlogn). Worst: O(n pow 2)
+    // Best: O(nlogn) - this happens when partitioning is even. To increase the probability of this
+    // we can randomize the selection of pivot
+    // Worst: O(n pow 2) - this happens when partitioning is uneven and leaves
+    // one element in one partition and rest in other
     public static void quickSort(int[] elements, int start, int end) {
         if (start >= end) { return; }
         int pIndex = randomizedPartition(elements, start, end);
@@ -34,7 +37,8 @@ public class QuickSort {
         return pIndex;
     }
 
-    //to avoid worst case scenario of time complexity:  O(n pow 2)
+    // To avoid worst case scenario of time complexity i.e  O(n pow 2)
+    // we randomize selection of pivot which increases probability of even partitioning
     private static int randomizedPartition(int[] elements, int start, int end) {
         Random r = new Random();
         int pivotIndex = r.nextInt(end - start) + start;
