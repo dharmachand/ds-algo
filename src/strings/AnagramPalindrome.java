@@ -39,7 +39,6 @@ public class AnagramPalindrome {
         return true;
     }
 
-
     //get all string permutations/anagrams
     public static List<String> getAllAnagramsOfString(String s) {
         List<String> anagrams = new ArrayList<>();

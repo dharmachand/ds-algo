@@ -6,7 +6,7 @@ public class LinkedList {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    private Node head;
+    public Node head;
 
     private int size;
 

@@ -6,7 +6,7 @@ public class CircularLinkedList {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    private Node head;
+    public Node head;
 
      static class Node { //defined static to reference in main()
         int data;

@@ -1,8 +1,8 @@
 package algorithms.bitwise;
 
 public class ElementOnce {
-    //TODO: Need to understand this logic
-    // Method to find the element that occur only once
+    //TODO: Need to understand this bitwise logic
+    //find the element that occur only once
     static int getSingle(int arr[], int n) {
         int ones = 0, twos = 0;
         int common_bit_mask;
