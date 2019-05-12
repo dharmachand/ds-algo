@@ -7,8 +7,8 @@ public class SumLists {
     private static final Scanner scanner = new Scanner(System.in);
 
     //TODO - Implement Logic
-    public static LinkedList sumLists(LinkedList num1List, LinkedList num2List) {
-        LinkedList sumList = new LinkedList();
+    public static LinkedList<Integer> sumLists(LinkedList<Integer> num1List, LinkedList<Integer> num2List) {
+        LinkedList<Integer> sumList = new LinkedList();
 
         LinkedList.Node num1Node = num1List.head;
         LinkedList.Node num2Node = num2List.head;
@@ -16,8 +16,8 @@ public class SumLists {
         //sum both lists - remember to add carry forward if any
         int carryFw = 0, exp = 0, remainder, digit;
         while (num1Node != null && num2Node != null ) {
-            digit = (num1Node.data + num2Node.data + carryFw) % 10;
-            carryFw = (num1Node.data + num2Node.data + carryFw) / 10;
+            digit = ((Integer)num1Node.data + (Integer)num2Node.data + carryFw) % 10;
+            carryFw = ((Integer)num1Node.data + (Integer)num2Node.data + carryFw) / 10;
 
             sumList.append(digit);
             exp += 1;
@@ -26,8 +26,8 @@ public class SumLists {
             num2Node = num2Node.next;
         }
         while (num1Node != null) {
-            digit = (num1Node.data + carryFw) % 10;
-            carryFw = (num1Node.data + carryFw) / 10;
+            digit = ((Integer)num1Node.data + carryFw) % 10;
+            carryFw = ((Integer)num1Node.data + carryFw) / 10;
 
             sumList.append(digit);
             exp += 1;
@@ -35,8 +35,8 @@ public class SumLists {
             num1Node = num1Node.next;
         }
         while (num2Node != null) {
-            digit = (num2Node.data + carryFw) % 10;
-            carryFw = (num2Node.data + carryFw) / 10;
+            digit = ((Integer)num2Node.data + carryFw) % 10;
+            carryFw = ((Integer)num2Node.data + carryFw) / 10;
 
             sumList.append(digit);
             exp += 1;
@@ -53,7 +53,7 @@ public class SumLists {
         System.out.println("Enter number1: ");
         String[] num1 = scanner.nextLine().split(" ");
 
-        LinkedList num1List = new LinkedList();
+        LinkedList<Integer> num1List = new LinkedList<>();
 
         for (int i = 0; i < num1.length; i++) {
             num1List.append(Integer.parseInt(num1[i]));
@@ -62,13 +62,13 @@ public class SumLists {
         System.out.println("Enter number2: ");
         String[] num2 = scanner.nextLine().split(" ");
 
-        LinkedList num2List = new LinkedList();
+        LinkedList<Integer> num2List = new LinkedList<>();
 
         for (int i = 0; i < num2.length; i++) {
             num2List.append(Integer.parseInt(num2[i]));
         }
 
-        LinkedList sumList = sumLists(num1List, num2List);
+        LinkedList<Integer> sumList = sumLists(num1List, num2List);
         System.out.println("Sum of numbers: ");
         LinkedList.printElements(sumList);
     }

@@ -6,7 +6,7 @@ public class KthToLast {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static LinkedList.Node findKthFromLast(LinkedList linkedList, int k) {
+    public static LinkedList.Node findKthFromLast(LinkedList<Integer> linkedList, int k) {
         LinkedList.Node fastNode = linkedList.head;
         LinkedList.Node slowNode = linkedList.head;
         int pos = 0;
@@ -29,14 +29,14 @@ public class KthToLast {
         System.out.println("Enter Kth position: ");
         int k = Integer.parseInt(scanner.nextLine());
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList();
 
         for (int i = 0; i < inputElements.length; i++) {
             elementList.append(Integer.parseInt(inputElements[i]));
         }
 
         LinkedList.Node kthNode = findKthFromLast(elementList, k);
-        System.out.println("Kth element from last: " + kthNode != null ? kthNode.data : null);
+        System.out.println("Kth element from last: " + (kthNode != null ? kthNode.data : null));
 
     }
 

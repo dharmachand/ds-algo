@@ -21,9 +21,9 @@ public class Graph {
 
     private void print() {
         for (int i = 0; i < this.vertices; i++) {
-            System.out.print(i);
+            System.out.print(i + ": ");
             for (Integer adjacentVertex : this.adjacencyListArray[i]) {
-                System.out.print(" -> " + adjacentVertex );
+                System.out.print(adjacentVertex + ", ");
             }
             System.out.println("");
         }
@@ -72,16 +72,15 @@ public class Graph {
         graph.addEdge(1, 2);
         graph.addEdge(2, 0);
         graph.addEdge(2, 3);
-        graph.addEdge(2, 3);
 
         System.out.println("Graph: ");
         graph.print();
 
-        System.out.println("Bfs Traversal");
+        System.out.println("Bfs Traversal starting at 2");
         graph.bfsTraversal(2);
         System.out.println("");
 
-        System.out.println("Dfs Traversal");
+        System.out.println("Dfs Traversal starting at 2");
         graph.dfsTraversal(2);
         System.out.println("");
 

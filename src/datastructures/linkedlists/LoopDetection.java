@@ -28,7 +28,7 @@ public class LoopDetection {
         System.out.println("Enter elements: ");
         String[] inputElements = scanner.nextLine().split(" ");
 
-        CircularLinkedList elementList = new CircularLinkedList();
+        CircularLinkedList<Integer> elementList = new CircularLinkedList<>();
 
         for (int i = 0; i < inputElements.length; i++) {
             elementList.push(Integer.parseInt(inputElements[i]));

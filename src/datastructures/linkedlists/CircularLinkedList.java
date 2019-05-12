@@ -2,23 +2,24 @@ package datastructures.linkedlists;
 
 import java.util.Scanner;
 
-public class CircularLinkedList {
+public class CircularLinkedList<T> {
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public Node head;
 
-     static class Node { //defined static to reference in main()
-        int data;
+    class Node {
+        T data;
         Node next;
-        Node(int value) {
+
+        Node(T value) {
             data = value;
             next = this;
         }
     }
 
 
-    public void push(int value) {
+    public void push(T value) {
          Node newNode = new Node(value);
          if (this.head == null) {
              this.head = newNode;
@@ -33,7 +34,7 @@ public class CircularLinkedList {
     }
 
     public static void printElements(CircularLinkedList linkedList) {
-         Node currNode = linkedList.head;
+         CircularLinkedList.Node currNode = linkedList.head;
          while (currNode.next != linkedList.head) {
              System.out.print(currNode.data + " ");
              currNode = currNode.next;
@@ -46,7 +47,7 @@ public class CircularLinkedList {
         System.out.println("Enter elements: ");
         String[] nk = scanner.nextLine().split(" ");
 
-        CircularLinkedList elementList = new CircularLinkedList();
+        CircularLinkedList<Integer> elementList = new CircularLinkedList<>();
 
         for (int i = 0; i < nk.length; i++) {
             elementList.push(Integer.parseInt(nk[i]));

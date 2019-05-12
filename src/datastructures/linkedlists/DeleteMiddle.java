@@ -28,7 +28,7 @@ public class DeleteMiddle {
         System.out.println("Enter elements: ");
         String[] inputElements = scanner.nextLine().split(" ");
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList<>();
 
         for (int i = 0; i < inputElements.length; i++) {
             elementList.append(Integer.parseInt(inputElements[i]));

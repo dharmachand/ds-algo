@@ -9,13 +9,13 @@ public class Duplicates {
 
     //Using extra data stucture
     //Time Complexity: O(n pow 2) & Space Complexity: O(n)
-    public static void removeDuplicates(LinkedList linkedList) {
+    public static void removeDuplicates(LinkedList<Integer> linkedList) {
         LinkedList.Node curr = linkedList.head;
         LinkedList.Node prev = null;
         HashSet<Integer> elementSet = new HashSet<>();
         while (curr != null) {
             if (!elementSet.contains(curr.data)) {
-                elementSet.add(curr.data);
+                elementSet.add((Integer)curr.data);
                 prev = curr;
             } else {
                 prev.next = curr.next;
@@ -26,7 +26,7 @@ public class Duplicates {
 
     //Without using extra data stucture
     //Time Complexity: O(n pow 2) & Space Complexity: O(1)
-    public static void removeDuplicatesWithOutExtraDs(LinkedList linkedList) {
+    public static void removeDuplicatesWithOutExtraDs(LinkedList<Integer> linkedList) {
         LinkedList.Node main = linkedList.head;
         LinkedList.Node ref, prevMain = main;;
         while (main != null) {
@@ -53,7 +53,7 @@ public class Duplicates {
         System.out.println("Enter elements: ");
         String[] nk = scanner.nextLine().split(" ");
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList<>();
 
         for (int i = 0; i < nk.length; i++) {
             elementList.append(Integer.parseInt(nk[i]));
@@ -64,7 +64,7 @@ public class Duplicates {
         LinkedList.printElements(elementList);
 
         //reset list
-        elementList = new LinkedList();
+        elementList = new LinkedList<>();
         for (int i = 0; i < nk.length; i++) {
             elementList.append(Integer.parseInt(nk[i]));
         }

@@ -15,7 +15,6 @@ public class BinaryTree {
 
         public Node(int item) {
             this.key = item;
-            this.left = this.right = null;
         }
     }
 

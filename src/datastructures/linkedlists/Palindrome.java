@@ -7,7 +7,6 @@ public class Palindrome {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static boolean isPalindrome(LinkedList linkedList) {
-        LinkedList fwList = linkedList;
         LinkedList.Node fwNode = linkedList.head;
 
         linkedList.reverse();
@@ -28,7 +27,7 @@ public class Palindrome {
         System.out.println("Enter element list: ");
         String[] nk = scanner.nextLine().split(" ");
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList<>();
 
         for (int i = 0; i < nk.length; i++) {
             elementList.append(Integer.parseInt(nk[i]));

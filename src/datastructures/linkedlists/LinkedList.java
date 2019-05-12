@@ -2,7 +2,7 @@ package datastructures.linkedlists;
 
 import java.util.Scanner;
 
-public class LinkedList {
+public class LinkedList<T> {
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -10,12 +10,12 @@ public class LinkedList {
 
     private int size;
 
-     static class Node { //defined static to reference in main()
-        int data;
+    class Node {
+        T data;
         Node next;
-        Node(int value) {
+
+        public Node(T value) {
             this.data = value;
-            this.next = null;
         }
     }
 
@@ -24,7 +24,7 @@ public class LinkedList {
     }
 
     //Inserts new node in the front of the list
-    public void push(int value) {
+    public void push(T value) {
          Node newNode = new Node(value);
          newNode.next = this.head;
          this.head = newNode;
@@ -41,7 +41,7 @@ public class LinkedList {
     }
 
     //Inserts new node to the last of the list
-    public void append(int value) {
+    public void append(T value) {
          Node newNode = new Node(value);
          newNode.next = null; //new node will be last node
 
@@ -60,7 +60,7 @@ public class LinkedList {
     }
 
     //Inserts new node after a given node
-    public void insertAfter(Node previousNode, int value) {
+    public void insertAfter(Node previousNode, T value) {
         if (previousNode == null) {
             throw new IllegalStateException("previous node is null");
         }
@@ -72,7 +72,7 @@ public class LinkedList {
     }
 
     //Inserts new node before a given node
-    public void insertBefore(Node nextNode, int value) {
+    public void insertBefore(Node nextNode, T value) {
         if (nextNode == null) {
             throw new IllegalStateException("next node is null");
         }
@@ -93,7 +93,7 @@ public class LinkedList {
     }
 
     //Removes node
-    public void remove(int value) {
+    public void remove(T value) {
         if (this.head == null) {
             throw new IllegalStateException("Empty LinkedList");
         }
@@ -198,7 +198,7 @@ public class LinkedList {
     }
 
     public static void printElements(LinkedList linkedList) {
-         Node currNode = linkedList.head;
+         LinkedList.Node currNode = linkedList.head;
          while (currNode != null) {
              System.out.print(currNode.data + " ");
              currNode = currNode.next;
@@ -211,7 +211,7 @@ public class LinkedList {
         System.out.println("Enter elements: ");
         String[] nk = scanner.nextLine().split(" ");
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList<>();
 
         for (int i = 0; i < nk.length; i++) {
             elementList.append(Integer.parseInt(nk[i]));

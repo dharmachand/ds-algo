@@ -45,7 +45,7 @@ public class RearrangeList {
         System.out.println("Enter elements: ");
         String[] nk = scanner.nextLine().split(" ");
 
-        LinkedList elementList = new LinkedList();
+        LinkedList<Integer> elementList = new LinkedList<>();
 
         for (int i = 0; i < nk.length; i++) {
             elementList.append(Integer.parseInt(nk[i]));
