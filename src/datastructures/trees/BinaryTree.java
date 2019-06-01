@@ -42,6 +42,33 @@ public class BinaryTree {
         inorder(this.root);
     }
 
+    //inorder traversal iterative starting from given node
+    public void inorderItr(Node currNode) {
+        if (currNode == null) { return; }
+
+        Stack<Node> stack = new Stack<>();
+        while (true) {
+            while (currNode != null) {
+                stack.push(currNode);
+                currNode = currNode.left;
+            }
+
+            if (stack.isEmpty()) break;
+
+            currNode = stack.pop();
+            System.out.print(currNode.key + " ");
+
+            currNode = currNode.right;
+        }
+    }
+
+    //inorder traversal iterative starting from root
+    public void inorderItr() {
+        if (this.root == null) { return; }
+
+        inorder(this.root);
+    }
+
     //pre-order traversal starting from given node
     public void preorder(Node currNode) {
         if (currNode == null) { return; }
@@ -53,6 +80,30 @@ public class BinaryTree {
 
     //pre-order traversal starting from root
     public void preorder() {
+        if (this.root == null) { return; }
+
+        preorder(this.root);
+    }
+
+    //pre-order traversal iterative starting from given node
+    public void preorderItr(Node currNode) {
+        if (currNode == null) { return; }
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(currNode);
+
+        Node curr;
+        while (!stack.isEmpty()) {
+            curr = stack.pop();
+
+            System.out.print(curr.key + " ");
+            if (curr.right != null) stack.push(curr.right);
+            if (curr.left != null) stack.push(curr.left);
+        }
+    }
+
+    //pre-order traversal iterative starting from root
+    public void preorderItr() {
         if (this.root == null) { return; }
 
         preorder(this.root);
@@ -236,6 +287,14 @@ public class BinaryTree {
 
         System.out.println("LevelOrder traversal of elements: ");
         binaryTree.levelorder();
+        System.out.println("");
+
+        System.out.println("InOrder (iterative) traversal of elements: ");
+        binaryTree.inorderItr();
+        System.out.println("");
+
+        System.out.println("PreOrder (iterative) traversal of elements: ");
+        binaryTree.preorderItr();
         System.out.println("");
 
         System.out.println("Sum of elements: " + sum(binaryTree.root));
