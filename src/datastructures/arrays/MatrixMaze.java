@@ -34,7 +34,7 @@ public class MatrixMaze {
 
         // Reached bottom of matrix i.e last row of matrix
         // Now you can only traverse to right to reach BOTTOM RIGHT of matrix
-        if (row == noOfRows -1) {
+        if (row == noOfRows - 1) {
             for (int colIdx = col + 1; colIdx < noOfCols;  colIdx++) {
                 path[idx + colIdx - col] = matrix[row][colIdx];
             }
