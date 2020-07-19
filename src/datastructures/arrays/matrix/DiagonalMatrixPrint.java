@@ -10,7 +10,7 @@ public class DiagonalMatrixPrint {
         for (int k = 0; k <= noOfRows - 1; k++) {
             row = k;
             col = 0;
-            while (row >= 0) {
+            while (row >= 0 && col <= noOfCols - 1) {
                 System.out.print(mat[row][col] + " ");
                 row = row - 1;
                 col = col + 1;
@@ -22,7 +22,7 @@ public class DiagonalMatrixPrint {
         for (int k = 1; k <= noOfCols - 1; k++) {
             row = noOfRows - 1;
             col = k;
-            while (col <= noOfCols - 1) {
+            while (col <= noOfCols - 1 && row >= 0) {
                 System.out.print(mat[row][col] + " ");
                 row = row - 1;
                 col = col + 1;
@@ -40,7 +40,7 @@ public class DiagonalMatrixPrint {
         for (int k = noOfRows - 1; k >= 0; k--) {
             row = k;
             col = 0;
-            while (row <= noOfRows - 1) {
+            while (row <= noOfRows - 1 && col <=  noOfCols - 1) {
                 System.out.print(mat[row][col] + " ");
                 row = row + 1;
                 col = col + 1;
@@ -52,7 +52,7 @@ public class DiagonalMatrixPrint {
         for (int k = 1; k <= noOfCols - 1; k++) {
             row = 0;
             col = k;
-            while (col <= noOfCols - 1) {
+            while (col <= noOfCols - 1 && row <= noOfRows) {
                 System.out.print(mat[row][col] + " ");
                 row = row + 1;
                 col = col + 1;
@@ -63,7 +63,8 @@ public class DiagonalMatrixPrint {
     }
 
     public static void main(String[] args) {
-        int[][] mat = {{3,3,1,1},{2,2,1,2},{1,1,1,2}};
+        //int[][] mat = {{3,3,1,1},{2,2,1,2},{1,1,1,2}};
+        int[][] mat = {{1,2,3},{4,5,6},{7,8,9}};
         // Input::
         // 3 3 1 1
         // 2 2 1 2

@@ -1,5 +1,8 @@
 package datastructures.queues;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Queue {
@@ -60,6 +63,11 @@ public class Queue {
         for (int i = 0; i < nk.length; i++) {
             elementQueue.enqueue(Integer.parseInt(nk[i]));
         }
+
+        Map<Character, Integer> taskFreq = new HashMap<>();
+
+        Iterator<Character> keys = taskFreq.keySet().iterator();
+
 
         System.out.println("Queue front: " + elementQueue.front());
 

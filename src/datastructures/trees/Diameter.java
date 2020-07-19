@@ -43,34 +43,18 @@ public class Diameter {
         System.out.print(currNode.data + " ");
         inorder(currNode.right);
     }
-
+    static int res = 0;
     public static int diameter(TreeNode root) {
-        int[] result = diameterAndHeight(root);
-
-        return result[0];
-
+        depth(root);
+        return res;
     }
 
-    public static int[] diameterAndHeight(TreeNode root) {
-        int[] heightDiameter = new int[2];
-
-        if (root == null) return heightDiameter;
-
-        int[] leftResult = diameterAndHeight(root.left);
-        int[] rightResult = diameterAndHeight(root.right);
-
-        int leftDiameter = leftResult[0];
-        int rightDiameter = rightResult[0];
-
-        int height = Math.max(leftResult[1], rightResult[1]) + 1;
-
-        int rootDiameter = leftResult[1] + rightResult[1] + 1;
-
-        int finalDiameter = Math.max(rootDiameter, Math.max(leftDiameter, rightDiameter));
-        heightDiameter[0] = finalDiameter;
-
-        heightDiameter[1] = height;
-        return heightDiameter;
+    private static int depth(TreeNode node) {
+        if (node == null) return 0;
+        int left = depth(node.left);
+        int right = depth(node.right);
+        res = Math.max(res, left + right);
+        return Math.max(left, right) + 1;
     }
 
 
