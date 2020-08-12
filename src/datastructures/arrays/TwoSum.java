@@ -1,52 +1,50 @@
 package datastructures.arrays;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TwoSum {
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> numsHash = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            numsHash.put(nums[i], i);
+    public static List<List<Integer>> twoSum(int[] nums, int target) {
+        //a + b = target
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            if (nums[low] + nums[high] == target) {
+                result.add(Arrays.asList(nums[low], nums[high]));
+                while(low < high && nums[low] == nums[low + 1]) low++;
+                while(low < high && nums[high] == nums[high - 1]) high--;
+                low++;
+                high--;
+            } else if (nums[low] + nums[high] > target) high--;
+            else low++;
         }
-        int complement;
-        for (int i = 0; i < nums.length; i++) {
-            complement = target - nums[i];
-            if (numsHash.containsKey(complement) && numsHash.get(complement) != i) {
-                return new int[] {i, numsHash.get(complement)};
-            }
-        }
-        throw new IllegalArgumentException("No two sum solution");
+        return result;
     }
 
-    public static void printElements(int[] elements) {
-        for (int i = 0; i < elements.length; i++) {
-            System.out.print(elements[i] + " ");
-        }
-    }
 
     public static void main(String[] args) {
+        //int target = 1;
+        //int[] nums = {-1, 0, 1, 2, -1, -4};
+        //Expected Output: [[0,1],[2,-1]]
 
-        System.out.println("Target: ");
-        int target = Integer.parseInt(scanner.nextLine());
+        int target = 2;
+        int[] nums = {-5,0,-2,3,-2,1,1,3,0,-5,3,3,0,-1};
+        //Expected Output: [[-1, 3], [1, 1]]
 
-        System.out.println("Enter elements: ");
-        String[] input = scanner.nextLine().split(" ");
+        //int[] nums = {-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0};
+        //Expected Output:
 
-        int[] elements = new int[input.length];
+        long startTime = System.nanoTime();
+        String result = twoSum(nums, target).toString();
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime) / 1000000; //milli secs
+        System.out.println(result);
+        System.out.println("ExecTime: " + duration);
 
-        for (int i = 0; i < input.length; i++) {
-            elements[i] = Integer.parseInt(input[i]);
-        }
-
-        int[] indeces = twoSum(elements, target);
-
-        System.out.println("Indeces of compliment numbers: ");
-        printElements(indeces);
-
-        scanner.close();
     }
 
 }
