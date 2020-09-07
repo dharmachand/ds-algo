@@ -1,41 +1,10 @@
 package datastructures.arrays;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 public class LastStoneWeight {
-    public static int lastStoneWeightLinear(int[] stones) {
-        int[] sortedStones = new int[1001];
-
-        for (int stone : stones) {
-            sortedStones[stone] += 1;
-        }
-
-        int x, y, i = 1000;
-        while (i > 0) {
-            while (i > 0 && sortedStones[i] == 0) {
-                i--;
-            }
-            while (i > 0 && sortedStones[i] > 1) {
-                sortedStones[i] -= 2;
-            }
-            if (i < 2) return i; //TODO: Fix logic here
-            y = i;
-            i--;
-            while (i > 0 && sortedStones[i] == 0) {
-                i--;
-            }
-            x = i;
-            if (sortedStones[i] == 1) i--;
-            if (y - x > 0) {
-                sortedStones[y - x] += 1;
-            }
-            sortedStones[x] -= 1;
-            sortedStones[y] -= 1;
-        }
-
-        return i;
-    }
-
     public static int lastStoneWeight(int[] stones) {
         Arrays.sort(stones);
         for (int i = stones.length - 1; i > 0; i--) {
@@ -45,10 +14,24 @@ public class LastStoneWeight {
         return stones[0];
     }
 
+    public static int lastStoneWeight1(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int stone : stones) {
+            pq.offer(stone);
+        }
+
+        while (pq.size() > 1) {
+            pq.offer(pq.poll() - pq.poll());
+        }
+
+        return pq.poll();
+    }
+
     public static void main(String[] args) {
         int[] stones = {2,7,4,1,8,1};
         //Expected Output: 1
 
         System.out.println("Last Stone Weight: " + lastStoneWeight(stones));
+        System.out.println("Last Stone Weight: " + lastStoneWeight1(stones));
     }
 }
