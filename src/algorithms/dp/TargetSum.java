@@ -1,4 +1,4 @@
-package datastructures.arrays.dp;
+package algorithms.dp;
 
 public class TargetSum {
     /**
