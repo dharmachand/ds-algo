@@ -59,7 +59,7 @@ public class Stack<T> {
         }
         System.out.println(" ");
 
-        System.out.println("Enter strings: ");
+        System.out.println("Enter datastructures.strings: ");
         String[] sk = scanner.nextLine().split(" ");
 
         Stack<String> stringStack = new Stack<>();

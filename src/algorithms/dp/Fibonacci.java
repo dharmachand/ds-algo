@@ -53,8 +53,7 @@ public class Fibonacci {
 
     //Plain recursion :: Time Complexity: Exponential
     private long getNthFibonacciRecursive(int n) {
-        if (n == 0) return 0;
-        else if (n == 1) return 1;
+        if (n == 0 || n == 1) return n;
         return getNthFibonacciRecursive(n - 1) + getNthFibonacciRecursive(n - 2);
     }
 

@@ -1,4 +1,4 @@
-package strings;
+package datastructures.strings;
 
 import java.util.Scanner;
 
@@ -27,11 +27,11 @@ public class StringDiffOneWay {
     //Time Complexity: O(a) if a > b else O(b) if b > a i.e equivalent to O(n)
     //Space Coplexity: O(1)
     public static boolean isSingleEditAwayBetter(String s1, String s2) {
-        // Find lengths of given strings
+        // Find lengths of given datastructures.strings
         int m = s1.length(), n = s2.length();
 
         // If difference between lengths is
-        // more than 1, then strings can't
+        // more than 1, then datastructures.strings can't
         // be at one distance
         if (Math.abs(m - n) > 1) return false;
 
@@ -48,7 +48,7 @@ public class StringDiffOneWay {
                 // is to remove a character
                 if (m > n) i++;
                 else if (m < n) j++;
-                else { // If lengths of both strings is same
+                else { // If lengths of both datastructures.strings is same
                     i++;
                     j++;
                 }

@@ -1,4 +1,4 @@
-package strings;
+package datastructures.strings;
 
 public class CharOccurrences {
     //'a' should before 'b'
