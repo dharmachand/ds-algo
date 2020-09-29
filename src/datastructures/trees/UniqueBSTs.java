@@ -3,6 +3,17 @@ package datastructures.trees;
 import java.util.*;
 
 public class UniqueBSTs {
+    /*
+        Given n, Return structurally unique BST's (binary search trees) that store values 1 ... n?
+        Explanation:
+        Given n = 3, there are a total of 5 unique BST's:
+
+           1         3     3      2      1
+            \       /     /      / \      \
+             3     2     1      1   3      2
+            /     /       \                 \
+           2     1         2                 3
+     */
 
     static class TreeNode {
         int val;
@@ -51,7 +62,7 @@ public class UniqueBSTs {
         List<TreeNode> left, right;
         for(int i = start; i <= end; i++) {
             left = genTrees(start, i - 1);
-            right = genTrees(i + 1,end);
+            right = genTrees(i + 1, end);
 
             for(TreeNode lNode: left) {
                 for(TreeNode rNode: right) {
