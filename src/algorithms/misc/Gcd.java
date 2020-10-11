@@ -22,6 +22,23 @@ public class Gcd {
         }
     }
 
+    public static int findGcdItr(int[] elements) {
+        int result = 0;
+        for (int i = 0; i < elements.length; i++) {
+            result = findGcdItr(elements[i], result);
+        }
+        return result;
+    }
+
+    public static int findGcdItr(int a, int b) {
+        if (b == 0) return a;
+        int gcd = 0;
+        for (int i = 1; i <= a && i <= b; i++) {
+            if (a % i == 0 && b % i == 0) gcd = i;
+        }
+        return gcd;
+    }
+
 
     public static void main(String[] args) {
 
@@ -34,9 +51,8 @@ public class Gcd {
             elements[i] = Integer.parseInt(nk[i]);
         }
 
-        int gcd = findGcd(elements);
-
-        System.out.println("Gcd: " + gcd);
+        System.out.println("Gcd: " + findGcd(elements));
+        System.out.println("Gcd: " + findGcdItr(elements));
 
     }
 }

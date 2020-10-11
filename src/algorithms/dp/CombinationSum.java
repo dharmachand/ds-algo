@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CombinationSum {
     /*
-    Given a set of candidate numbers (candidates) (without duplicates) and a target number (target),
-    find all unique combinations in candidates where the candidate numbers sums to target.
+        Given a set of candidate numbers (candidates) (without duplicates) and a target number (target),
+        find all unique combinations in candidates where the candidate numbers sums to target.
      */
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
