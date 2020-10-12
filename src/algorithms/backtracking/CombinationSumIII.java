@@ -1,4 +1,4 @@
-package algorithms.dp;
+package algorithms.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,11 @@ public class CombinationSumIII {
     /*
     Find all possible combinations of k numbers that add up to a number n,
     given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+
+    Solution and Similar Problems:
+        https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)
+        https://leetcode.com/problems/permutations/discuss/18284/Backtrack-Summary%3A-General-Solution-for-10-Questions!!!!!!!!-Python-(Combination-Sum-Subsets-Permutation-Palindrome)
+
      */
 
     public static List<List<Integer>> combinationSum3(int k, int n) {

@@ -1,4 +1,4 @@
-package algorithms.dp;
+package algorithms.backtracking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,11 @@ public class CombinationSum {
     /*
         Given a set of candidate numbers (candidates) (without duplicates) and a target number (target),
         find all unique combinations in candidates where the candidate numbers sums to target.
+
+        Solution and Similar Problems:
+        https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)
+        https://leetcode.com/problems/permutations/discuss/18284/Backtrack-Summary%3A-General-Solution-for-10-Questions!!!!!!!!-Python-(Combination-Sum-Subsets-Permutation-Palindrome)
+
      */
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
