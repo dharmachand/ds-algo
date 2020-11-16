@@ -40,6 +40,8 @@ public class Permutations {
         }
 
         for (int i = 0; i < nums.length; i++) {
+            //Time Complexity is O(n) which can be done in O(1) and also can't handle duplicates
+            //Refer PermutationsBetter
             if (permutation.contains(nums[i])) continue;
             permutation.add(nums[i]);
             permute(nums, permutations, permutation);

@@ -1,7 +1,5 @@
 package algorithms.backtracking;
 
-import java.util.Arrays;
-
 public class NQueensII {
     /*
         The n-queens puzzle is the problem of placing n queens on an n×n chessboard
@@ -11,25 +9,25 @@ public class NQueensII {
     private static int count = 0;
     public static int totalNQueensII(int n) {
         int[] queue = new int[n];
-        backtrack(0, queue, n);
+        backtrack(n,0, queue);
         return count;
     }
 
-    private static void backtrack(int row,int[] queue,int n) {
+    private static void backtrack(int n, int row, int[] queue) {
         if(row == n){
             count++;
         } else {
             for(int i = 0; i < n; i++){
-                if(isOk(row, i, queue)) {
+                if(isOk(queue, row, i)) {
                     queue[row] = i;
                     //System.out.println(Arrays.toString(queue));
-                    backtrack(row + 1, queue, n);
+                    backtrack(n, row + 1, queue);
                 }
             }
         }
     }
 
-    private static boolean isOk(int row,int col,int[] queue) {
+    private static boolean isOk(int[] queue, int row, int col) {
         //System.out.println("row: " + row + " col: " + col + " ====> " + Arrays.toString(queue));
         int leftUp = col - 1, rightUp = col + 1;
         int n = queue.length;

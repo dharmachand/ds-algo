@@ -3,8 +3,8 @@ package datastructures.strings;
 public class CharOccurrences {
     //'a' should before 'b'
     public static void main(String[] args) {
-        //String s = "abba";
-        String s = "aabbb";
+        String s = "abba";
+        //String s = "aabbb";
         //String s = "aaaaaa";
         //String s = "bbb";
         //String s = "ba";
