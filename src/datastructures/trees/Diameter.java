@@ -1,9 +1,6 @@
 package datastructures.trees;
 
-import java.util.Scanner;
-
 public class Diameter {
-    public static final Scanner scanner = new Scanner(System.in);
 
     static class TreeNode {
         int data;
@@ -43,31 +40,35 @@ public class Diameter {
         System.out.print(currNode.data + " ");
         inorder(currNode.right);
     }
-    static int res = 0;
     public static int diameter(TreeNode root) {
-        depth(root);
-        return res;
+        if (root == null) return 0;
+        return diameter(root, new int[1]);
     }
 
-    private static int depth(TreeNode node) {
-        if (node == null) return 0;
-        int left = depth(node.left);
-        int right = depth(node.right);
-        res = Math.max(res, left + right);
+    //Bottom-Up DFS
+    private static int diameter(TreeNode node, int[] maxDiameter) {
+        if (node.left == null && node.right == null) return 0;
+        int left = 0, right = 0, myDia = 0;
+        if (node.left != null) {
+            left = diameter(node.left, maxDiameter);
+            myDia += left + 1;
+        }
+        if (node.right != null) {
+            right = diameter(node.right, maxDiameter);
+            myDia += right + 1;
+        }
+        maxDiameter[0] = Math.max(maxDiameter[0], myDia);
         return Math.max(left, right) + 1;
     }
 
 
     public static void main(String[] args) {
-        // 20 15 30 14 18 35 17 19 32
+        int[] nk = {20, 15, 30, 14, 18, 35, 17, 19, 32};
 
-        System.out.println("Enter elements: ");
-        String[] nk = scanner.nextLine().split(" ");
-
-        TreeNode root = new TreeNode(Integer.parseInt(nk[0]));
+        TreeNode root = new TreeNode(nk[0]);
 
         for (int i = 1; i < nk.length; i++) {
-            insert(root, Integer.parseInt(nk[i]));
+            insert(root, nk[i]);
         }
 
         System.out.println("Tree elements inorder traversal: ");
