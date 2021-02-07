@@ -1,2 +1,2 @@
-# spring-play
-spring-play
+# ds-algo
+Datastructures and Algorithms
