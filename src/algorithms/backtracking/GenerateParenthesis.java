@@ -59,8 +59,40 @@ public class GenerateParenthesis {
     }
     //Approach 2: Backtracking********************End
 
+    //Approach 3: Backtracking****************************Start
+    public static List<String> generateParenthesis3(int n) {
+        List<String> result = new ArrayList<>();
+        generateBetter(n, n, new StringBuilder(), result);
+        return result;
+    }
+
+    private static void generateBetter(int open, int close, StringBuilder current, List<String> result) {
+        //Backtracking case
+        if (open > close) return;
+
+        //Base Case
+        if (open == 0 && close == 0) {
+            result.add(current.toString());
+            return;
+        }
+
+        //Iterative Case
+        if (open > 0) {
+            current.append("(");
+            generateBetter(open - 1, close, current, result);
+            current.delete(current.length() - 1, current.length());
+        }
+        if (close > 0) {
+            current.append(")");
+            generateBetter(open, close - 1, current, result);
+            current.delete(current.length() - 1, current.length());
+        }
+    }
+    //Approach 3: Backtracking****************************End
+
     public static void main(String[] args) {
         System.out.println(generateParenthesis(3));
         System.out.println(generateParenthesis2(3));
+        System.out.println(generateParenthesis3(3));
     }
 }

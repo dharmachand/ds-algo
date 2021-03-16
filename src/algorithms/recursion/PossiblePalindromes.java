@@ -49,44 +49,46 @@ public class PossiblePalindromes {
     /*
      * Complete the function below.
      */
-    static String[] generate_palindromic_decompositions(String s) {
-        List<String> palinds = new ArrayList<>();
-        generatePalindromeDecomp(s, 0, new StringBuilder(), palinds);
-        return palinds.stream().toArray(String[]::new);
+    static String[] generatePalindromicDecompositions(String s) {
+        List<String> result = new ArrayList<>();
+        if(s == null || s.isEmpty()) {
+            return null;
+        }
+        helper(s.toCharArray(), 0, new char[s.length() * 2], 0, result);
+        String[] arr = new String[result.size()];
+        int i = 0;
+        for(String str : result) {
+            arr[i] = str;
+            i++;
+        }
+        return arr;
     }
 
-    private static void generatePalindromeDecomp(String s, int pos, StringBuilder sb, List<String> palinds) {
-        if (pos == s.length()) {
-            palinds.add(sb.toString());
+    static void helper(char[] arr, int i, char[] slate, int k, List<String> result) {
+        if(i == arr.length) {
+            result.add(new String(slate, 0, k-1));
             return;
         }
-
-        for (int i = pos; i < s.length(); i++) {
-            if (isPalindrome(s, pos, i)) {
-                if (pos == 0) {
-                    generatePalindromeDecomp(s, i + 1, new StringBuilder(s.substring(pos, i - pos + 1)), palinds);
-                } else {
-                    sb.append("|");
-                    sb.append(s.substring(pos, i - pos + 1));
-                    generatePalindromeDecomp(s, i + 1, sb, palinds);
-                    sb.deleteCharAt(sb.length() - 1);
-                    sb.deleteCharAt(sb.length() - 1);
-                }
+        for(int j = i; j < arr.length; j++) {
+            slate[k++] = arr[j];
+            if(isPalindrome(arr, i, j)) {
+                slate[k] = '|';
+                helper(arr, j + 1, slate, k + 1, result);
             }
         }
     }
 
-    private static boolean isPalindrome(String s, int start, int end) {
-        while (start < end) {
-            if (s.charAt(start++) != s.charAt(end--)) return false;
+    static boolean isPalindrome(char[] arr, int p1, int p2) {
+        while(p1 < p2) {
+            if(arr[p1++] != arr[p2--]) {
+                return false;
+            }
         }
         return true;
     }
 
-
-
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(generate_palindromic_decompositions("abracadabra")));
+        System.out.println(Arrays.toString(generatePalindromicDecompositions("abracadabra")));
     }
 
 }
