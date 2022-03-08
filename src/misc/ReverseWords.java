@@ -8,7 +8,6 @@ public class ReverseWords {
         char[] a = {'H', 'e', 'l', 'l', 'o', 'o', BLANK,
                 'J', 'a', 'v', 'a', BLANK,
                 'W', 'o', 'r', 'l', 'd'};
-        //char[] a = {'H', 'e', 'l', 'l', 'o', 'o'};
         System.out.println(String.valueOf(a));
 
         int n = a.length;
@@ -19,7 +18,7 @@ public class ReverseWords {
         // reverse whole sentence array
         reverse(a, 0, n - 1);
 
-        //reverse each word in sentence array
+        //reverse each word in reversed sentence array
         int ws = 0, we = 0;
         for (int i = 0; i < n; i++) {
             if (a[i] == BLANK) {
@@ -43,7 +42,6 @@ public class ReverseWords {
         }
         return hasBlank;
     }
-
 
     private static void reverse(char[] s, int start, int end) {
         if (end - start < 2) return;
