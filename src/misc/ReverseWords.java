@@ -5,53 +5,43 @@ public class ReverseWords {
     public static final char BLANK = ' ';
 
     public static void main(String[] args) {
-        char[] a = {'H', 'e', 'l', 'l', 'o', 'o', BLANK,
-                'J', 'a', 'v', 'a', BLANK,
-                'W', 'o', 'r', 'l', 'd'};
-        System.out.println(String.valueOf(a));
+        char[] sentence = {BLANK, 'H', 'e', 'l', 'l', 'o', 'o', BLANK,
+                BLANK, 'J', 'a', 'v', 'a', BLANK, BLANK,
+                'W', 'o', 'r', 'l', 'd', BLANK};
+        System.out.println(String.valueOf(sentence));
 
-        int n = a.length;
-        // no need to reverse if sentence has single word
-        boolean hasBlanks = hasBlanks(a);
-        if (!hasBlanks) return;
+        reverseWords(sentence);
+
+        System.out.println(String.valueOf(sentence));
+    }
+
+    private static void reverseWords(char[] sentence) {
+        int n = sentence.length;
 
         // reverse whole sentence array
-        reverse(a, 0, n - 1);
+        reverse(sentence, 0, n);
 
         //reverse each word in reversed sentence array
-        int ws = 0, we = 0;
-        for (int i = 0; i < n; i++) {
-            if (a[i] == BLANK) {
-                we = i - 1;
-                reverse(a, ws, we);
-                ws = i + 1;
-            }
+        int start = 0, end = 0;
+        while (start < n && end < n) {
+            while (start < n && sentence[start] == BLANK) start++;
+            end = start;
+            while (end < n && sentence[end] != BLANK) end++;
+            reverse(sentence, start, end);
+            start = end;
         }
-        if (ws > 0) reverse(a, ws, n - 1);
 
-        System.out.println(String.valueOf(a));
     }
 
-    private static boolean hasBlanks(char[] a) {
-        boolean hasBlank = false;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == BLANK) {
-                hasBlank = true;
-                break;
-            }
-        }
-        return hasBlank;
-    }
-
-    private static void reverse(char[] s, int start, int end) {
+    private static void reverse(char[] sentence, int start, int end) {
         if (end - start < 2) return;
-        int i = start, j = end;
+        int left = start, right = end - 1;
         char temp;
-        while (i < j) {
-            temp = s[i];
-            s[i] = s[j];
-            s[j] = temp;
-            i++; j--;
+        while (left <= right) {
+            temp = sentence[left];
+            sentence[left] = sentence[right];
+            sentence[right] = temp;
+            left++; right--;
         }
     }
 
